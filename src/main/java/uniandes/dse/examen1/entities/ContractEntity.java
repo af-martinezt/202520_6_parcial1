@@ -34,5 +34,7 @@ public class ContractEntity {
     private Integer satisfaction;
 
     // TODO
+    
+
 
 }

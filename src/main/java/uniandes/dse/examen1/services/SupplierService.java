@@ -16,7 +16,11 @@ public class SupplierService {
     SupplierRepository supplierRepository;
 
     public SupplierEntity createSupplier(SupplierEntity newSupplier) throws RepeatedSupplierException {
-        // TODO
-        return null;
+        //TODO
+        log.info("Crear nuevo proveedor. Ingrese un código diferente, no se pueden repetir.");
+        if (supplierRepository.findBySupplierCode(newSupplier.getSupplierCode()) != null) {
+            throw new RepeatedSupplierException("Ya existe un proveedor con ese código");
+        }   
+        return supplierRepository.save(newSupplier);
     }
 }

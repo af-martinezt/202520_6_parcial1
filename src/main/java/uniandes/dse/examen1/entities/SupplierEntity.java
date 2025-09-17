@@ -1,9 +1,13 @@
 package uniandes.dse.examen1.entities;
 
+import org.hibernate.annotations.ManyToAny;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import uk.co.jemos.podam.common.PodamExclude;
 
@@ -33,4 +37,8 @@ public class SupplierEntity {
     private Integer capacity;
 
     // TODO
+    @PodamExclude
+    @ManyToOne
+    private FactoryEntity factory; 
+
 }

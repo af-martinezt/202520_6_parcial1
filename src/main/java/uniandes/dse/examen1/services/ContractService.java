@@ -26,6 +26,17 @@ public class ContractService {
     public ContractEntity createContract(String factoryName, String supplierCode, Double contractValue)
             throws InvalidContractException {
         // TODO
-        return null;
+        if (contractValue <= 0) {
+            throw new InvalidContractException("El valor del contrato debe ser un número positivo");
+        }
+        if (factoryRepository.findByName(factoryName) == null) {
+            throw new InvalidContractException("No existe una fábrica con ese nombre");
+        }
+        if (supplierRepository.findBySupplierCode(supplierCode) == null) {
+            throw new InvalidContractException("No existe un proveedor con ese código");
+        }
+
+
+        return contractRepository();
     }
 }

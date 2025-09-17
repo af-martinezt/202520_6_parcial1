@@ -72,6 +72,12 @@ public class ContractServiceTest {
     @Test
     void testCreateContract() {
         // TODO
+         try {        
+                contractService.createContract(name, supplierCode, 1000.0);
+        } catch (InvalidContractException e) {
+            fail("No exception should be thrown: " + e.getMessage());
+        }
+
     }
 
     /**
@@ -81,8 +87,15 @@ public class ContractServiceTest {
     @Test
     void testCreateMultipleContract() {
         // TODO
+        try {
+            int numberOfContracts = 5;
+            for (int i = 0; i < numberOfContracts; i++) {
+                contractService.createContract(name, supplierCode, 1000.0);
+            }
+        } catch (InvalidContractException e) {
+            fail("No exception should be thrown: " + e.getMessage());
+        }
     }
-
     /**
      * Tests the creation of many contracts for a factory with the same
      * existing supplier with unlimited capacity
@@ -105,6 +118,11 @@ public class ContractServiceTest {
     @Test
     void testCreateContractMissingSupplier() {
         // TODO
+        try {        
+                contractService.createContract(name, null, 1000.0);
+        } catch (InvalidContractException e) {
+            fail("No exception should be thrown: " + e.getMessage());
+        }
     }
 
     /**

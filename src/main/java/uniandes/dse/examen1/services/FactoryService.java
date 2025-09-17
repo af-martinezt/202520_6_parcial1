@@ -17,6 +17,11 @@ public class FactoryService {
 
     public FactoryEntity createFactory(FactoryEntity newFactory) throws RepeatedFactoryException {
         // TODO
-        return null;
+        log.info("Crear nueva fábrica. No puede tener el mismo nombre de una ya existente.");
+        if (factoryRepository.findByName(newFactory.getName()) != null) {
+            throw new RepeatedFactoryException("Ya existe una fábrica con ese nombre");
+        }
+        return factoryRepository.save(newFactory);
     }
+
 }
